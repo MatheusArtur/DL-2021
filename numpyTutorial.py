@@ -1,10 +1,11 @@
-# Numpy Exercise, Added sources on the answers for each question for future consults on the problems
+# Numpy Exercise, Added sources on the answers for each question for future consults on the problems. TODO -> Organize this file in a .org (Org mode) file
 
 import numpy as np
 from numpy import linalg as LA
 import pandas as pd
 import random
-
+from numpy.polynomial.polynomial import polygrid2d
+from numpy.polynomial.polynomial import polygrid3d
 
 ##### NumPy Array
 
@@ -611,77 +612,253 @@ rslt = np.true_divide(x, 4)
 print("After the element-wise division:", 
       rslt)
 
-# How to calculate the element-wise absolute value of NumPy array?
+# How to calculate the element-wise absolute value of NumPy array? https://www.geeksforgeeks.org/how-to-calculate-the-element-wise-absolute-value-of-numpy-array/
+array = np.array([1, -2, 3])
+  
+print("Given array:\n", array)
+rslt = np.absolute(array)
+  
+print("Absolute array:\n", rslt)
 
-# Compute the negative of the NumPy array
+# Compute the negative of the NumPy array https://www.geeksforgeeks.org/numpy-negative-in-python/
+in_num = 10
+  
+print ("Input  number : ", in_num)
+    
+out_num = np.negative(in_num) 
+print ("negative of input number : ", out_num) 
 
-# Multiply 2d numpy array corresponding to 1d array
+# Multiply 2d numpy array corresponding to 1d array https://www.geeksforgeeks.org/python-multiply-2d-numpy-array-corresponding-to-1d-array/
+ini_array1 = np.array([[1, 2, 3], [2, 4, 5], [1, 2, 3]])
+ini_array2 = np.array([0, 2, 3])
+  
+print("initial array", str(ini_array1))
+result = ini_array1 * ini_array2[:, np.newaxis]
+  
+# printing result
+print("New resulting array: ", result)
 
-# Computes the inner product of two arrays
+# Computes the inner product of two arrays https://numpy.org/doc/stable/reference/generated/numpy.inner.html
+np.inner(a, b) = sum(a[:]*b[:])
 
-# Compute the nth percentile of the NumPy array
+# Compute the nth percentile of the NumPy array https://www.geeksforgeeks.org/numpy-percentile-in-python/
+arr = [20, 2, 7, 1, 34]
+print("arr : ", arr)
+print("50th percentile of arr : ",
+       np.percentile(arr, 50))
+print("25th percentile of arr : ",
+       np.percentile(arr, 25))
+print("75th percentile of arr : ",
+       np.percentile(arr, 75))
 
-# Calculate the n-th order discrete difference along the given axis
+# Calculate the n-th order discrete difference along the given axis https://www.geeksforgeeks.org/numpy-diff-in-python/
+arr = np.array([1, 3, 4, 7, 9])
+   
+print("Input array  : ", arr)
+print("First order difference  : ", np.diff(arr))
+print("Second order difference : ", np.diff(arr, n = 2))
+print("Third order difference  : ", np.diff(arr, n = 3))
 
-# Calculate the sum of all columns in a 2D NumPy array
+# Calculate the sum of all columns in a 2D NumPy array https://www.w3resource.com/python-exercises/numpy/python-numpy-exercise-152.php
+num = np.arange(36)
+arr1 = np.reshape(num, [4, 9])
+print("Original array:")
+print(arr1)
+result  = arr1.sum(axis=0)
+print("\nSum of all columns:")
+print(result)
 
-# Calculate average values of two given NumPy arrays
+# Calculate average values of two given NumPy arrays https://www.geeksforgeeks.org/calculate-average-values-of-two-given-numpy-arrays/
+arr1 = np.array([3, 4])
+arr2 = np.array([1, 0])
+avg = (arr1 + arr2) / 2
 
-# How to compute numerical negative value for all elements in a given NumPy array?
+print("Average of NumPy arrays:\n",
+      avg)
 
-# How to get the floor, ceiling and truncated values of the elements of a numpy array?
+# How to compute numerical negative value for all elements in a given NumPy array? https://www.geeksforgeeks.org/how-to-compute-numerical-negative-value-for-all-elements-in-a-given-numpy-array/
+x = np.array([-1, -2, -3,
+              1, 2, 3, 0])
 
-# How to round elements of the NumPy array to the nearest integer?
+print("Printing the Original array:",
+      x)
+r1 = np.negative(x)
 
-# Find the round off the values of the given matrix
+print("Printing the negative value of the given array:",
+      r1)
 
-# Determine the positive square-root of an array
+# How to get the floor, ceiling and truncated values of the elements of a numpy array? https://www.w3resource.com/python-exercises/numpy/python-numpy-math-exercise-10.php
+x = np.array([-1.6, -1.5, -0.3, 0.1, 1.4, 1.8, 2.0])
+print("Original array:")
+print(x)
+print("Floor values of the above array elements:")
+print(np.floor(x))
+print("Ceil values of the above array elements:")
+print(np.ceil(x))
+print("Truncated values of the above array elements:")
+print(np.trunc(x))
 
-# Evaluate Einstein’s summation convention of two multidimensional NumPy arrays
+# How to round elements of the NumPy array to the nearest integer? https://numpy.org/doc/stable/reference/generated/numpy.rint.html
+a = np.array([-1.7, -1.5, -0.2, 0.2, 1.5, 1.7, 2.0])
+np.rint(a)
+
+# Find the round off the values of the given matrix https://www.geeksforgeeks.org/python-numpy-matrix-round/
+gfg = np.matrix('[6.4, 1.3; 12.7, 32.3]')
+           
+# applying matrix.round() method
+geeks = gfg.round()     
+print(geeks)
+
+# Determine the positive square-root of an array https://www.geeksforgeeks.org/numpy-sqrt-in-python/
+arr1 = np.sqrt([1, 4, 9, 16])
+arr2 = np.sqrt([6, 10, 18])
+  
+print("square-root of an array1  : ", arr1)
+print("square-root of an array2  : ", arr2)
+
+# Evaluate Einstein’s summation convention of two multidimensional NumPy arrays https://www.geeksforgeeks.org/evaluate-einsteins-summation-convention-of-two-multidimensional-numpy-arrays/
+matrix1 = np.array([[1, 2], [0, 2]])
+matrix2 = np.array([[0, 1], [3, 4]])
+  
+print("Original matrix:")
+print(matrix1)
+print(matrix2)
+  
+result = np.einsum("mk,kn", matrix1, matrix2)
+  
+print("Einstein’s summation convention of the two matrix:")
+print(result)
 
 
 ##### Questions on NumPy Statistics
 
 
-# Compute the median of the flattened NumPy array
+# Compute the median of the flattened NumPy array https://www.geeksforgeeks.org/compute-the-median-of-the-flattened-numpy-array/
+x_odd = np.array([1, 2, 3, 4, 5, 6, 7])
+print("\nPrinting the Original array:")
+print(x_odd)
+  
+med_odd = np.median(x_odd)
+print("\nMedian of the array that contains \
+odd no of elements:")
+print(med_odd)
 
-# Find Mean of a List of Numpy Array
+# Find Mean of a List of Numpy Array https://numpy.org/doc/stable/reference/generated/numpy.mean.html
+a = np.array([[1, 2], [3, 4]])
+np.mean(a)
 
-# Calculate the mean of array ignoring the NaN value
+# Calculate the mean of array ignoring the NaN value https://www.geeksforgeeks.org/python-numpy-nanmean-function/
+arr = np.array([[20, 15, 37], [47, 13, np.nan]])
+print("Shape of array is", arr.shape)
+print("Mean of array without using nanmean function:",
+                                           np.mean(arr))
+   
+print("Using nanmean function:", np.nanmean(arr))
 
-# Get the mean value from given matrix
+# Get the mean value from given matrix https://numpy.org/doc/stable/reference/generated/numpy.matrix.mean.html
+x = np.matrix(np.arange(12).reshape((3, 4)))
+x.mean()
 
-# Compute the variance of the NumPy array
+# Compute the variance of the NumPy array https://numpy.org/doc/stable/reference/generated/numpy.var.html#:~:text=The%20variance%20is%20the%20average,N%20%3D%20len(x)%20.
+a = np.array([[1, 2], [3, 4]])
+np.var(a)
 
-# Compute the standard deviation of the NumPy array
+# Compute the standard deviation of the NumPy array https://numpy.org/doc/stable/reference/generated/numpy.std.html#:~:text=The%20standard%20deviation%20is%20the,N%20%3D%20len(x)%20.
+a = np.array([[1, 2], [3, 4]])
+np.std(a)
 
-# Compute pearson product-moment correlation coefficients of two given NumPy arrays
+# Compute pearson product-moment correlation coefficients of two given NumPy arrays https://www.geeksforgeeks.org/compute-pearson-product-moment-correlation-coefficients-of-two-given-numpy-arrays/
+array1 = np.array([0, 1, 2])
+array2 = np.array([3, 4, 5])
+rslt = np.corrcoef(array1, array2)
+  
+print(rslt)
 
-# Calculate the mean across dimension in a 2D NumPy array
+# Calculate the mean across dimension in a 2D NumPy array https://www.w3resource.com/python-exercises/numpy/python-numpy-math-exercise-19.php
+x = np.array([[10, 30], [20, 60]])
+print("Original array:")
+print(x)
+print("Mean of each column:")
+print(x.mean(axis=0))
+print("Mean of each row:")
+print(x.mean(axis=1))
 
-# Calculate the average, variance and standard deviation in Python using NumPy
+# Calculate the average, variance and standard deviation in Python using NumPy https://www.geeksforgeeks.org/calculate-the-average-variance-and-standard-deviation-in-python-using-numpy/
+list = [2, 4, 4, 4, 5, 5, 7, 9]
+print(np.average(list))
 
-# Describe a NumPy Array in Python
+# Describe a NumPy Array in Python https://www.geeksforgeeks.org/describe-a-numpy-array-in-python/
+arr = np.array([4, 5, 8, 5, 6, 4,
+                9, 2, 4, 3, 6])    
+mean = np.mean(arr)
+median = np.median(arr)
+  
+print("Array =", arr)
+print("Mean =", mean)
+print("Median =", median)
 
 
 ##### Questions on Polynomial
 
 
-# Define a polynomial function
+# Define a polynomial function https://numpy.org/doc/stable/reference/generated/numpy.poly1d.html
+p = np.poly1d([1, 2, 3])
+print(np.poly1d(p))
 
-# How to add one polynomial to another using NumPy in Python?
+# How to add one polynomial to another using NumPy in Python? https://www.geeksforgeeks.org/how-to-add-one-polynomial-to-another-using-numpy-in-python/
+px = (5,-2,5)
+#q(x) = 2(x**2) + (-5)x +2
+qx = (2,-5,2) 
+#add the polynomials
+rx = np.polynomial.polynomial.polyadd(px,qx)
+#print the resultant polynomial
+print(rx)
 
-# How to subtract one polynomial to another using NumPy in Python?
+# How to subtract one polynomial to another using NumPy in Python? https://www.geeksforgeeks.org/how-to-subtract-one-polynomial-to-another-using-numpy-in-python/
+#define the polynomials
+#p(x) = 5(x**2) + (-2)x +5
+px = (5,-2,5)
+#q(x) = 2(x**2) + (-5)x +2
+qx = (2,-5,2)
+#subtract the polynomials
+rx = np.polynomial.polynomial.polysub(px,qx)
+#print the resultant polynomial
+print(rx)
 
-# How to multiply a polynomial to another using NumPy in Python?
+# How to multiply a polynomial to another using NumPy in Python? https://www.geeksforgeeks.org/how-to-multiply-a-polynomial-to-another-using-numpy-in-python/
+#define the polynomials
+#p(x) = 5(x**2) + (-2)x +5
+px = (5, -2, 5)
+#q(x) = 2(x**2) + (-5)x +2
+qx = (2, -5, 2)
+#mul the polynomials
+rx = np.polynomial.polynomial.polymul(px, qx)
+#print the resultant polynomial
+print(rx)
 
-# How to divide a polynomial to another using NumPy in Python?
+# How to divide a polynomial to another using NumPy in Python? https://www.geeksforgeeks.org/how-to-divide-a-polynomial-to-another-using-numpy-in-python/
+#p(x) = 5(x**2) + (-2)x +5
+px = (5, -2, 5)
+#q(x) = 2(x**2) + (-5)x +2
+qx = (2, -5, 2)
+#mul the polynomials
+rx = np.polynomial.polynomial.polydiv(px, qx)
+#print the resultant polynomial
+print(rx)
 
-# Find the roots of the polynomials using NumPy
+# Find the roots of the polynomials using NumPy https://www.geeksforgeeks.org/find-the-roots-of-the-polynomials-using-numpy/
+coeff = [1, 2, 1]
+print(np.roots(coeff))
 
-# Evaluate a 2-D polynomial series on the Cartesian product
+# Evaluate a 2-D polynomial series on the Cartesian product https://www.geeksforgeeks.org/python-numpy-np-polygrid2d-method/
+c = np.array([[1, 3, 5], [2, 4, 6]]) 
+ans = polygrid2d([7, 9], [8, 10], c)
+print(ans)
 
 # Evaluate a 3-D polynomial series on the Cartesian product
+c = np.array([[1, 3, 5], [2, 4, 6], [10, 11, 12]]) 
+ans = polygrid3d([7, 9], [8, 10], [5, 6], c)
+print(ans)
 
 
 ##### Questions on NumPy Strings
