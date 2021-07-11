@@ -1,4 +1,5 @@
 # Numpy Exercise, Added sources on the answers for each question for future consults on the problems
+
 import numpy as np
 from numpy import linalg as LA
 import pandas as pd

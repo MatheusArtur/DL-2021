@@ -8,16 +8,17 @@
 #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
 
 ** Numpy Exercise, Added sources on the answers for each question for future consults on the problems
+#+BEGIN_SRC python
 import numpy as np
 from numpy import linalg as LA
 import pandas as pd
 import random
-
+#+END_SRC
 
 * NumPy Array
 
 
-** How to create an empty and a full NumPy array? https://www.geeksforgeeks.org/how-to-create-an-empty-and-a-full-numpy-array/
+** [https://www.geeksforgeeks.org/how-to-create-an-empty-and-a-full-numpy-array/[How to create an empty and a full NumPy array?]]
 empa = np.empty((3, 4), dtype=int)
 print("Empty Array")
 print(empa)
