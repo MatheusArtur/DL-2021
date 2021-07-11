@@ -895,6 +895,9 @@ print(r)
 # Find the length of each string element in the Numpy array https://www.geeksforgeeks.org/find-the-length-of-each-string-element-in-the-numpy-array/
 arr = np.array(['New York', 'Lisbon', 'Beijing', 'Quebec'])
 print(arr)
+length_checker = np.vectorize(len)
+arr_len = length_checker(arr)
+print(arr_len)
 
 # Swap the case of an array of string https://www.geeksforgeeks.org/numpy-string-operations-swapcase-function/
 in_arr = np.array(['P4Q R', '4q Rp', 'Q Rp4', 'rp4q'])
