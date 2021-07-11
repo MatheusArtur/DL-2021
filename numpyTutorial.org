@@ -189,11 +189,10 @@ print(a)
 a.flags.writeable = False
 print("After making array immutable on attempting  second change ")
 a[1] = 7
-
+#+END_SRC
 
 * Questions on NumPy Matrix
 
-#+END_SRC
 ** Get the maximum value from given matrix
 #+BEGIN_SRC python
 x = np.matrix(np.arange(12).reshape((3,4)));x
@@ -378,11 +377,11 @@ x = np.matrix(np.arange(12).reshape((3,4))); x
         [ 4,  5,  6,  7],
         [ 8,  9, 10, 11]])
 x.tolist()
-
+#+END_SRC
 
 * Questions on NumPy Indexing
 
-#+END_SRC
+
 ** Replace NumPy array elements that doesn’t satisfy the given condition
 #+BEGIN_SRC python
 n_arr = np.array([75.42436315, 42.48558583, 60.32924763])
@@ -525,11 +524,11 @@ ridx = np.intersect1d(ridx1, ridx2)
 idx = np.unravel_index(ridx, a.shape)
 
 np.allclose(a[idx], a[(a>0.2) & (a<0.4)])
-
+#+END_SRC
 
 * Questions on NumPy Linear Algebra
 
-#+END_SRC
+
 ** Find a matrix or vector norm using NumPy
 #+BEGIN_SRC python
 vec = np.arange(10)
@@ -582,11 +581,11 @@ point2 = np.array((1, 1, 1))
 dist = np.linalg.norm(point1 - point2)
  
 print(dist)
-
+#+END_SRC
 
 * Questions on NumPy Random
 
-#+END_SRC
+
 ** Create a Numpy array with random values
 #+BEGIN_SRC python
 np.random.rand(3,2)
@@ -632,7 +631,7 @@ s = np.random.normal(mu, sigma, 1000)
 
 * Questions on NumPy Sorting and Searching
 
-#+END_SRC
+
 ** How to get the indices of the sorted array using NumPy in Python?
 #+BEGIN_SRC python
 student_id = np.array([1023, 5202, 6230, 1671, 1682, 5241, 4532])
@@ -684,7 +683,7 @@ print("The number which we want to insert : ", num)
     
 out_ind = np.searchsorted(in_arr, num) 
 print ("Output indices to maintain sorted array : ", out_ind)
-
+#+END_SRC
 
 * Questions on NumPy Mathematics
 
@@ -823,7 +822,7 @@ result = np.einsum("mk,kn", matrix1, matrix2)
   
 print("Einstein’s summation convention of the two matrix:")
 print(result)
-
+#+END_SRC
 
 * Questions on NumPy Statistics
 
@@ -900,11 +899,10 @@ median = np.median(arr)
 print("Array =", arr)
 print("Mean =", mean)
 print("Median =", median)
-
+#+END_SRC
 
 * Questions on Polynomial
 
-#+END_SRC
 ** Define a polynomial function 
 #+BEGIN_SRC python
 p = np.poly1d([1, 2, 3])
@@ -1067,9 +1065,9 @@ print(r)
 a = np.array(['geeks', 'for', 'geeks'])
 gfg = np.char.endswith(a, 'ks')  
 print(gfg)
-
-* More Questions on NumPy
 #+END_SRC
+* More Questions on NumPy
+
 ** Different ways to convert a Python dictionary to a NumPy array 
 #+BEGIN_SRC python
 name_list = """{
