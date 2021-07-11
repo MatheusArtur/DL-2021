@@ -1,4 +1,4 @@
-# Numpy Exercise, Added sources on the answers for each question for future consults on the problems. TODO -> Organize this file in a .org (Org mode) file
+# Numpy Tutorial, with sources for each question for future consults on the problems. TODO -> Organize this file in a .org (Org mode) file
 
 import numpy as np
 from numpy import linalg as LA
@@ -6,6 +6,9 @@ import pandas as pd
 import random
 from numpy.polynomial.polynomial import polygrid2d
 from numpy.polynomial.polynomial import polygrid3d
+from ast import literal_eval
+from PIL import Image
+import matplotlib.pyplot as plt
 
 ##### NumPy Array
 
@@ -864,46 +867,162 @@ print(ans)
 ##### Questions on NumPy Strings
 
 
-# Repeat all the elements of a NumPy array of strings
+# Repeat all the elements of a NumPy array of strings https://www.geeksforgeeks.org/repeat-all-the-elements-of-a-numpy-array-of-strings/
+arr = np.array(['Akash', 'Rohit', 'Ayush', 
+                'Dhruv', 'Radhika'], dtype = np.str)
+print("Original Array :")
+print(arr)
+new_array = np.char.multiply(arr, 3)
+print("\nNew array :")
+print(new_array)
 
-# How to split the element of a given NumPy array with spaces?
+# How to split the element of a given NumPy array with spaces? https://www.geeksforgeeks.org/how-to-split-the-element-of-a-given-numpy-array-with-spaces/
+array = np.array(['PHP C# Python C Java C++'], dtype=np.str)
+print(array)
+sparr = np.char.split(array)
+print(sparr)
 
-# How to insert a space between characters of all the elements of a given NumPy array?
+# How to insert a space between characters of all the elements of a given NumPy array? https://www.geeksforgeeks.org/how-to-insert-a-space-between-characters-of-all-the-elements-of-a-given-numpy-array/
+x = np.array(["geeks", "for", "geeks"],
+             dtype=np.str)
+print("Printing the Original Array:")
+print(x)
+r = np.char.join(" ", x)
+print("Printing the array after inserting space\
+between the elements")
+print(r)
 
-# Find the length of each string element in the Numpy array
+# Find the length of each string element in the Numpy array https://www.geeksforgeeks.org/find-the-length-of-each-string-element-in-the-numpy-array/
+arr = np.array(['New York', 'Lisbon', 'Beijing', 'Quebec'])
+print(arr)
 
-# Swap the case of an array of string
+# Swap the case of an array of string https://www.geeksforgeeks.org/numpy-string-operations-swapcase-function/
+in_arr = np.array(['P4Q R', '4q Rp', 'Q Rp4', 'rp4q'])
+print ("input array : ", in_arr)
+out_arr = np.char.swapcase(in_arr)
+print ("output swapcasecased array :", out_arr)
 
-# Change the case to uppercase of elements of an array
+# Change the case to uppercase of elements of an array https://numpy.org/doc/stable//reference/generated/numpy.char.upper.html
+c = np.array(['a1b c', '1bca', 'bca1'])
+np.char.upper(c)
 
-# Change the case to lowercase of elements of an array
+# Change the case to lowercase of elements of an array https://numpy.org/doc/stable/reference/generated/numpy.char.lower.html
+c = np.array(['A1B C', '1BCA', 'BCA1']); c
+np.char.lower(c)
 
-# Join String by a seperator
+# Join String by a seperator https://www.geeksforgeeks.org/numpy-string-operations-join-function/
+in_arr = np.array(['Python', 'Numpy', 'Pandas'])
+print ("Input original array : ", in_arr) 
+sep = np.array(['-', '+', '*'])
+out_arr = np.core.defchararray.join(sep, in_arr)
+print ("Output joined array: ", out_arr)
 
-# Check if two same shaped string arrayss one by one
+# Check if two same shaped string arrayss one by one https://www.geeksforgeeks.org/numpy-string-operations-equal-function/
+in_arr1 = np.array('numpy')
+print ("1st Input array : ", in_arr1)
+in_arr2 = np.array('numpy')
+print ("2nd Input array : ", in_arr2)  
+out_arr = np.char.equal(in_arr1, in_arr2)
+print ("Output array: ", out_arr)
 
-# Count the number of substrings in an array
+# Count the number of substrings in an array https://www.geeksforgeeks.org/numpy-string-operations-count-function/
+in_arr = np.array(['Sayantan', '  Sayan  ', 'Sayansubhra'])
+print ("Input array : ", in_arr)  
+out_arr = np.char.count(in_arr, sub ='an')
+print ("Output array: ", out_arr) 
 
-# Find the lowest index of the substring in an array
+# Find the lowest index of the substring in an array https://www.w3resource.com/python-exercises/numpy/python-numpy-string-exercise-16.php
+x1 = np.array(['Python', 'PHP', 'JS', 'EXAMPLES', 'HTML'], dtype=np.str)
+print("\nOriginal Array:")
+print(x1)
+print("count the lowest index of ‘P’:")
+r = np.char.find(x1, "P")
+print(r)
 
-# Get the boolean array when values end with a particular character
+# Get the boolean array when values end with a particular character https://www.geeksforgeeks.org/python-numpy-np-char-endswith-method/
+a = np.array(['geeks', 'for', 'geeks'])
+gfg = np.char.endswith(a, 'ks')  
+print(gfg)
 
-# More Questions on NumPy
+##### More Questions on NumPy
 
-# Different ways to convert a Python dictionary to a NumPy array
+# Different ways to convert a Python dictionary to a NumPy array https://www.geeksforgeeks.org/different-ways-to-convert-a-python-dictionary-to-a-numpy-array/
+name_list = """{
+   "column0": {"First_Name": "Akash",
+   "Second_Name": "kumar", "Interest": "Coding"},
+                  
+   "column1": {"First_Name": "Ayush",
+   "Second_Name": "Sharma", "Interest": "Cricket"},
+     
+   "column2": {"First_Name": "Diksha",
+   "Second_Name": "Sharma","Interest": "Reading"},
+     
+   "column3": {"First_Name":" Priyanka",
+   "Second_Name": "Kumari", "Interest": "Dancing"}
+     
+  }"""
+print("Type of name_list created:\n",
+      type(name_list))
+t = literal_eval(name_list)
+print("\nPrinting the original Name_list dictionary:\n",
+      t)
+  
+print("Type of original dictionary:\n",
+      type(t))
+result_nparra = np.array([[v[j] for j in ['First_Name', 'Second_Name',
+                                          'Interest']] for k, v in t.items()])
+  
+print("\nConverted ndarray from the Original dictionary:\n",
+      result_nparra)
 
-# How to convert a list and tuple into NumPy arrays?
+print("Type:\n", type(result_nparra))
 
-# Ways to convert array of strings to array of floats
+# How to convert a list and tuple into NumPy arrays? https://www.geeksforgeeks.org/how-to-convert-a-list-and-tuple-into-numpy-arrays/
+list1 = [3, 4, 5, 6]
+print(type(list1))
+print(list1)
+array1 = np.asarray(list1)
+print(type(array1))
+print(array1)
+tuple1 = ([8, 4, 6], [1, 2, 3])
+print(type(tuple1))
+print(tuple1)
+array2 = np.asarray(tuple1)
+print(type(array2))
+print(array2)
 
-# Convert a NumPy array into a csv file
+# Ways to convert array of strings to array of floats https://www.delftstack.com/howto/numpy/numpy-convert-string-array-to-float-array/
+stringArray = np.array(["1.000", "1.235", "0.000125", "2", "55", "-12.35", "0", "-0.00025"])
+floatArray = stringArray.astype(float)
+print(stringArray)
+print(floatArray)
 
-# How to Convert an image to NumPy array and save it to CSV file using Python?
+# Convert a NumPy array into a csv file https://stackoverflow.com/questions/6081008/dump-a-numpy-array-into-a-csv-file
+pd.DataFrame(np_array).to_csv("path/to/file.csv")
 
-# How to save a NumPy array to a text file?
+# How to Convert an image to NumPy array and save it to CSV file using Python? https://www.geeksforgeeks.org/how-to-convert-an-image-to-numpy-array-and-saveit-to-csv-file-using-python/
+img = Image.open('geeksforgeeks.jpg')
+imageToMatrice = gfg.asarray(img)
+print(imageToMatrice.shape)
 
-# Load data from a text file
+# How to save a NumPy array to a text file? kite.com/python/answers/how-to-save-a-numpy-array-to-a-text-file-in-python
+original_array = np.loadtxt("test.txt").reshape(4, 2)
 
-# Plot line graph from NumPy array
+# Load data from a text file https://www.geeksforgeeks.org/import-text-files-into-numpy-arrays/
+File_data = np.loadtxt("example1.txt", dtype=int)
+print(File_data)
 
-# Create Histogram using NumPy
+# Plot line graph from NumPy array https://www.geeksforgeeks.org/plot-line-graph-from-numpy-array/
+x = np.arange(1, 11)
+y = x * x
+
+plt.title("Line graph")
+plt.xlabel("X axis")
+plt.ylabel("Y axis")
+plt.plot(x, y, color ="red")
+plt.show()
+
+# Create Histogram using NumPy https://numpy.org/doc/stable/reference/generated/numpy.histogram.html
+np.histogram([1, 2, 1], bins=[0, 1, 2, 3])
+a = np.arange(5)
+hist, bin_edges = np.histogram(a, density=True)
