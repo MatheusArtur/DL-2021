@@ -621,122 +621,414 @@ rslt = np.true_divide(x, 4)
 print("After the element-wise division:", 
       rslt)
 
-** How to calculate the element-wise absolute value of NumPy array?
+** How to calculate the element-wise absolute value of NumPy array? https://www.geeksforgeeks.org/how-to-calculate-the-element-wise-absolute-value-of-numpy-array/
+array = np.array([1, -2, 3])
+  
+print("Given array:\n", array)
+rslt = np.absolute(array)
+  
+print("Absolute array:\n", rslt)
 
-** Compute the negative of the NumPy array
+** Compute the negative of the NumPy array https://www.geeksforgeeks.org/numpy-negative-in-python/
+in_num = 10
+  
+print ("Input  number : ", in_num)
+    
+out_num = np.negative(in_num) 
+print ("negative of input number : ", out_num) 
 
-** Multiply 2d numpy array corresponding to 1d array
+** Multiply 2d numpy array corresponding to 1d array https://www.geeksforgeeks.org/python-multiply-2d-numpy-array-corresponding-to-1d-array/
+ini_array1 = np.array([[1, 2, 3], [2, 4, 5], [1, 2, 3]])
+ini_array2 = np.array([0, 2, 3])
+  
+print("initial array", str(ini_array1))
+result = ini_array1 * ini_array2[:, np.newaxis]
+  
+** printing result
+print("New resulting array: ", result)
 
-** Computes the inner product of two arrays
+** Computes the inner product of two arrays https://numpy.org/doc/stable/reference/generated/numpy.inner.html
+np.inner(a, b) = sum(a[:]*b[:])
 
-** Compute the nth percentile of the NumPy array
+** Compute the nth percentile of the NumPy array https://www.geeksforgeeks.org/numpy-percentile-in-python/
+arr = [20, 2, 7, 1, 34]
+print("arr : ", arr)
+print("50th percentile of arr : ",
+       np.percentile(arr, 50))
+print("25th percentile of arr : ",
+       np.percentile(arr, 25))
+print("75th percentile of arr : ",
+       np.percentile(arr, 75))
 
-** Calculate the n-th order discrete difference along the given axis
+** Calculate the n-th order discrete difference along the given axis https://www.geeksforgeeks.org/numpy-diff-in-python/
+arr = np.array([1, 3, 4, 7, 9])
+   
+print("Input array  : ", arr)
+print("First order difference  : ", np.diff(arr))
+print("Second order difference : ", np.diff(arr, n = 2))
+print("Third order difference  : ", np.diff(arr, n = 3))
 
-** Calculate the sum of all columns in a 2D NumPy array
+** Calculate the sum of all columns in a 2D NumPy array https://www.w3resource.com/python-exercises/numpy/python-numpy-exercise-152.php
+num = np.arange(36)
+arr1 = np.reshape(num, [4, 9])
+print("Original array:")
+print(arr1)
+result  = arr1.sum(axis=0)
+print("\nSum of all columns:")
+print(result)
 
-** Calculate average values of two given NumPy arrays
+** Calculate average values of two given NumPy arrays https://www.geeksforgeeks.org/calculate-average-values-of-two-given-numpy-arrays/
+arr1 = np.array([3, 4])
+arr2 = np.array([1, 0])
+avg = (arr1 + arr2) / 2
 
-** How to compute numerical negative value for all elements in a given NumPy array?
+print("Average of NumPy arrays:\n",
+      avg)
 
-** How to get the floor, ceiling and truncated values of the elements of a numpy array?
+** How to compute numerical negative value for all elements in a given NumPy array? https://www.geeksforgeeks.org/how-to-compute-numerical-negative-value-for-all-elements-in-a-given-numpy-array/
+x = np.array([-1, -2, -3,
+              1, 2, 3, 0])
 
-** How to round elements of the NumPy array to the nearest integer?
+print("Printing the Original array:",
+      x)
+r1 = np.negative(x)
 
-** Find the round off the values of the given matrix
+print("Printing the negative value of the given array:",
+      r1)
 
-** Determine the positive square-root of an array
+** How to get the floor, ceiling and truncated values of the elements of a numpy array? https://www.w3resource.com/python-exercises/numpy/python-numpy-math-exercise-10.php
+x = np.array([-1.6, -1.5, -0.3, 0.1, 1.4, 1.8, 2.0])
+print("Original array:")
+print(x)
+print("Floor values of the above array elements:")
+print(np.floor(x))
+print("Ceil values of the above array elements:")
+print(np.ceil(x))
+print("Truncated values of the above array elements:")
+print(np.trunc(x))
 
-** Evaluate Einstein’s summation convention of two multidimensional NumPy arrays
+** How to round elements of the NumPy array to the nearest integer? https://numpy.org/doc/stable/reference/generated/numpy.rint.html
+a = np.array([-1.7, -1.5, -0.2, 0.2, 1.5, 1.7, 2.0])
+np.rint(a)
+
+** Find the round off the values of the given matrix https://www.geeksforgeeks.org/python-numpy-matrix-round/
+gfg = np.matrix('[6.4, 1.3; 12.7, 32.3]')
+           
+** applying matrix.round() method
+geeks = gfg.round()     
+print(geeks)
+
+** Determine the positive square-root of an array https://www.geeksforgeeks.org/numpy-sqrt-in-python/
+arr1 = np.sqrt([1, 4, 9, 16])
+arr2 = np.sqrt([6, 10, 18])
+  
+print("square-root of an array1  : ", arr1)
+print("square-root of an array2  : ", arr2)
+
+** Evaluate Einstein’s summation convention of two multidimensional NumPy arrays https://www.geeksforgeeks.org/evaluate-einsteins-summation-convention-of-two-multidimensional-numpy-arrays/
+matrix1 = np.array([[1, 2], [0, 2]])
+matrix2 = np.array([[0, 1], [3, 4]])
+  
+print("Original matrix:")
+print(matrix1)
+print(matrix2)
+  
+result = np.einsum("mk,kn", matrix1, matrix2)
+  
+print("Einstein’s summation convention of the two matrix:")
+print(result)
 
 
 * Questions on NumPy Statistics
 
 
-** Compute the median of the flattened NumPy array
+** Compute the median of the flattened NumPy array https://www.geeksforgeeks.org/compute-the-median-of-the-flattened-numpy-array/
+x_odd = np.array([1, 2, 3, 4, 5, 6, 7])
+print("\nPrinting the Original array:")
+print(x_odd)
+  
+med_odd = np.median(x_odd)
+print("\nMedian of the array that contains \
+odd no of elements:")
+print(med_odd)
 
-** Find Mean of a List of Numpy Array
+** Find Mean of a List of Numpy Array https://numpy.org/doc/stable/reference/generated/numpy.mean.html
+a = np.array([[1, 2], [3, 4]])
+np.mean(a)
 
-** Calculate the mean of array ignoring the NaN value
+** Calculate the mean of array ignoring the NaN value https://www.geeksforgeeks.org/python-numpy-nanmean-function/
+arr = np.array([[20, 15, 37], [47, 13, np.nan]])
+print("Shape of array is", arr.shape)
+print("Mean of array without using nanmean function:",
+                                           np.mean(arr))
+   
+print("Using nanmean function:", np.nanmean(arr))
 
-** Get the mean value from given matrix
+** Get the mean value from given matrix https://numpy.org/doc/stable/reference/generated/numpy.matrix.mean.html
+x = np.matrix(np.arange(12).reshape((3, 4)))
+x.mean()
 
-** Compute the variance of the NumPy array
+** Compute the variance of the NumPy array https://numpy.org/doc/stable/reference/generated/numpy.var.html#:~:text=The%20variance%20is%20the%20average,N%20%3D%20len(x)%20.
+a = np.array([[1, 2], [3, 4]])
+np.var(a)
 
-** Compute the standard deviation of the NumPy array
+** Compute the standard deviation of the NumPy array https://numpy.org/doc/stable/reference/generated/numpy.std.html#:~:text=The%20standard%20deviation%20is%20the,N%20%3D%20len(x)%20.
+a = np.array([[1, 2], [3, 4]])
+np.std(a)
 
-** Compute pearson product-moment correlation coefficients of two given NumPy arrays
+** Compute pearson product-moment correlation coefficients of two given NumPy arrays https://www.geeksforgeeks.org/compute-pearson-product-moment-correlation-coefficients-of-two-given-numpy-arrays/
+array1 = np.array([0, 1, 2])
+array2 = np.array([3, 4, 5])
+rslt = np.corrcoef(array1, array2)
+  
+print(rslt)
 
-** Calculate the mean across dimension in a 2D NumPy array
+** Calculate the mean across dimension in a 2D NumPy array https://www.w3resource.com/python-exercises/numpy/python-numpy-math-exercise-19.php
+x = np.array([[10, 30], [20, 60]])
+print("Original array:")
+print(x)
+print("Mean of each column:")
+print(x.mean(axis=0))
+print("Mean of each row:")
+print(x.mean(axis=1))
 
-** Calculate the average, variance and standard deviation in Python using NumPy
+** Calculate the average, variance and standard deviation in Python using NumPy https://www.geeksforgeeks.org/calculate-the-average-variance-and-standard-deviation-in-python-using-numpy/
+list = [2, 4, 4, 4, 5, 5, 7, 9]
+print(np.average(list))
 
-** Describe a NumPy Array in Python
+** Describe a NumPy Array in Python https://www.geeksforgeeks.org/describe-a-numpy-array-in-python/
+arr = np.array([4, 5, 8, 5, 6, 4,
+                9, 2, 4, 3, 6])    
+mean = np.mean(arr)
+median = np.median(arr)
+  
+print("Array =", arr)
+print("Mean =", mean)
+print("Median =", median)
 
 
 * Questions on Polynomial
 
 
-** Define a polynomial function
+** Define a polynomial function https://numpy.org/doc/stable/reference/generated/numpy.poly1d.html
+p = np.poly1d([1, 2, 3])
+print(np.poly1d(p))
 
-** How to add one polynomial to another using NumPy in Python?
+** How to add one polynomial to another using NumPy in Python? https://www.geeksforgeeks.org/how-to-add-one-polynomial-to-another-using-numpy-in-python/
+px = (5,-2,5)
+#q(x) = 2(x**2) + (-5)x +2
+qx = (2,-5,2) 
+#add the polynomials
+rx = np.polynomial.polynomial.polyadd(px,qx)
+#print the resultant polynomial
+print(rx)
 
-** How to subtract one polynomial to another using NumPy in Python?
+** How to subtract one polynomial to another using NumPy in Python? https://www.geeksforgeeks.org/how-to-subtract-one-polynomial-to-another-using-numpy-in-python/
+#define the polynomials
+#p(x) = 5(x**2) + (-2)x +5
+px = (5,-2,5)
+#q(x) = 2(x**2) + (-5)x +2
+qx = (2,-5,2)
+#subtract the polynomials
+rx = np.polynomial.polynomial.polysub(px,qx)
+#print the resultant polynomial
+print(rx)
 
-** How to multiply a polynomial to another using NumPy in Python?
+** How to multiply a polynomial to another using NumPy in Python? https://www.geeksforgeeks.org/how-to-multiply-a-polynomial-to-another-using-numpy-in-python/
+#define the polynomials
+#p(x) = 5(x**2) + (-2)x +5
+px = (5, -2, 5)
+#q(x) = 2(x**2) + (-5)x +2
+qx = (2, -5, 2)
+#mul the polynomials
+rx = np.polynomial.polynomial.polymul(px, qx)
+#print the resultant polynomial
+print(rx)
 
-** How to divide a polynomial to another using NumPy in Python?
+** How to divide a polynomial to another using NumPy in Python? https://www.geeksforgeeks.org/how-to-divide-a-polynomial-to-another-using-numpy-in-python/
+#p(x) = 5(x**2) + (-2)x +5
+px = (5, -2, 5)
+#q(x) = 2(x**2) + (-5)x +2
+qx = (2, -5, 2)
+#mul the polynomials
+rx = np.polynomial.polynomial.polydiv(px, qx)
+#print the resultant polynomial
+print(rx)
 
-** Find the roots of the polynomials using NumPy
+** Find the roots of the polynomials using NumPy https://www.geeksforgeeks.org/find-the-roots-of-the-polynomials-using-numpy/
+coeff = [1, 2, 1]
+print(np.roots(coeff))
 
-** Evaluate a 2-D polynomial series on the Cartesian product
+** Evaluate a 2-D polynomial series on the Cartesian product https://www.geeksforgeeks.org/python-numpy-np-polygrid2d-method/
+c = np.array([[1, 3, 5], [2, 4, 6]]) 
+ans = polygrid2d([7, 9], [8, 10], c)
+print(ans)
 
 ** Evaluate a 3-D polynomial series on the Cartesian product
+c = np.array([[1, 3, 5], [2, 4, 6], [10, 11, 12]]) 
+ans = polygrid3d([7, 9], [8, 10], [5, 6], c)
+print(ans)
 
 
 * Questions on NumPy Strings
 
 
-** Repeat all the elements of a NumPy array of strings
+** Repeat all the elements of a NumPy array of strings https://www.geeksforgeeks.org/repeat-all-the-elements-of-a-numpy-array-of-strings/
+arr = np.array(['Akash', 'Rohit', 'Ayush', 
+                'Dhruv', 'Radhika'], dtype = np.str)
+print("Original Array :")
+print(arr)
+new_array = np.char.multiply(arr, 3)
+print("\nNew array :")
+print(new_array)
 
-** How to split the element of a given NumPy array with spaces?
+** How to split the element of a given NumPy array with spaces? https://www.geeksforgeeks.org/how-to-split-the-element-of-a-given-numpy-array-with-spaces/
+array = np.array(['PHP C** Python C Java C++'], dtype=np.str)
+print(array)
+sparr = np.char.split(array)
+print(sparr)
 
-** How to insert a space between characters of all the elements of a given NumPy array?
+** How to insert a space between characters of all the elements of a given NumPy array? https://www.geeksforgeeks.org/how-to-insert-a-space-between-characters-of-all-the-elements-of-a-given-numpy-array/
+x = np.array(["geeks", "for", "geeks"],
+             dtype=np.str)
+print("Printing the Original Array:")
+print(x)
+r = np.char.join(" ", x)
+print("Printing the array after inserting space\
+between the elements")
+print(r)
 
-** Find the length of each string element in the Numpy array
+** Find the length of each string element in the Numpy array https://www.geeksforgeeks.org/find-the-length-of-each-string-element-in-the-numpy-array/
+arr = np.array(['New York', 'Lisbon', 'Beijing', 'Quebec'])
+print(arr)
 
-** Swap the case of an array of string
+** Swap the case of an array of string https://www.geeksforgeeks.org/numpy-string-operations-swapcase-function/
+in_arr = np.array(['P4Q R', '4q Rp', 'Q Rp4', 'rp4q'])
+print ("input array : ", in_arr)
+out_arr = np.char.swapcase(in_arr)
+print ("output swapcasecased array :", out_arr)
 
-** Change the case to uppercase of elements of an array
+** Change the case to uppercase of elements of an array https://numpy.org/doc/stable//reference/generated/numpy.char.upper.html
+c = np.array(['a1b c', '1bca', 'bca1'])
+np.char.upper(c)
 
-** Change the case to lowercase of elements of an array
+** Change the case to lowercase of elements of an array https://numpy.org/doc/stable/reference/generated/numpy.char.lower.html
+c = np.array(['A1B C', '1BCA', 'BCA1']); c
+np.char.lower(c)
 
-** Join String by a seperator
+** Join String by a seperator https://www.geeksforgeeks.org/numpy-string-operations-join-function/
+in_arr = np.array(['Python', 'Numpy', 'Pandas'])
+print ("Input original array : ", in_arr) 
+sep = np.array(['-', '+', '*'])
+out_arr = np.core.defchararray.join(sep, in_arr)
+print ("Output joined array: ", out_arr)
 
-** Check if two same shaped string arrayss one by one
+** Check if two same shaped string arrayss one by one https://www.geeksforgeeks.org/numpy-string-operations-equal-function/
+in_arr1 = np.array('numpy')
+print ("1st Input array : ", in_arr1)
+in_arr2 = np.array('numpy')
+print ("2nd Input array : ", in_arr2)  
+out_arr = np.char.equal(in_arr1, in_arr2)
+print ("Output array: ", out_arr)
 
-** Count the number of substrings in an array
+** Count the number of substrings in an array https://www.geeksforgeeks.org/numpy-string-operations-count-function/
+in_arr = np.array(['Sayantan', '  Sayan  ', 'Sayansubhra'])
+print ("Input array : ", in_arr)  
+out_arr = np.char.count(in_arr, sub ='an')
+print ("Output array: ", out_arr) 
 
-** Find the lowest index of the substring in an array
+** Find the lowest index of the substring in an array https://www.w3resource.com/python-exercises/numpy/python-numpy-string-exercise-16.php
+x1 = np.array(['Python', 'PHP', 'JS', 'EXAMPLES', 'HTML'], dtype=np.str)
+print("\nOriginal Array:")
+print(x1)
+print("count the lowest index of ‘P’:")
+r = np.char.find(x1, "P")
+print(r)
 
-** Get the boolean array when values end with a particular character
+** Get the boolean array when values end with a particular character https://www.geeksforgeeks.org/python-numpy-np-char-endswith-method/
+a = np.array(['geeks', 'for', 'geeks'])
+gfg = np.char.endswith(a, 'ks')  
+print(gfg)
 
-** More Questions on NumPy
+* More Questions on NumPy
 
-** Different ways to convert a Python dictionary to a NumPy array
+** Different ways to convert a Python dictionary to a NumPy array https://www.geeksforgeeks.org/different-ways-to-convert-a-python-dictionary-to-a-numpy-array/
+name_list = """{
+   "column0": {"First_Name": "Akash",
+   "Second_Name": "kumar", "Interest": "Coding"},
+                  
+   "column1": {"First_Name": "Ayush",
+   "Second_Name": "Sharma", "Interest": "Cricket"},
+     
+   "column2": {"First_Name": "Diksha",
+   "Second_Name": "Sharma","Interest": "Reading"},
+     
+   "column3": {"First_Name":" Priyanka",
+   "Second_Name": "Kumari", "Interest": "Dancing"}
+     
+  }"""
+print("Type of name_list created:\n",
+      type(name_list))
+t = literal_eval(name_list)
+print("\nPrinting the original Name_list dictionary:\n",
+      t)
+  
+print("Type of original dictionary:\n",
+      type(t))
+result_nparra = np.array([[v[j] for j in ['First_Name', 'Second_Name',
+                                          'Interest']] for k, v in t.items()])
+  
+print("\nConverted ndarray from the Original dictionary:\n",
+      result_nparra)
 
-** How to convert a list and tuple into NumPy arrays?
+print("Type:\n", type(result_nparra))
 
-** Ways to convert array of strings to array of floats
+** How to convert a list and tuple into NumPy arrays? https://www.geeksforgeeks.org/how-to-convert-a-list-and-tuple-into-numpy-arrays/
+list1 = [3, 4, 5, 6]
+print(type(list1))
+print(list1)
+array1 = np.asarray(list1)
+print(type(array1))
+print(array1)
+tuple1 = ([8, 4, 6], [1, 2, 3])
+print(type(tuple1))
+print(tuple1)
+array2 = np.asarray(tuple1)
+print(type(array2))
+print(array2)
 
-** Convert a NumPy array into a csv file
+** Ways to convert array of strings to array of floats https://www.delftstack.com/howto/numpy/numpy-convert-string-array-to-float-array/
+stringArray = np.array(["1.000", "1.235", "0.000125", "2", "55", "-12.35", "0", "-0.00025"])
+floatArray = stringArray.astype(float)
+print(stringArray)
+print(floatArray)
 
-** How to Convert an image to NumPy array and save it to CSV file using Python?
+** Convert a NumPy array into a csv file https://stackoverflow.com/questions/6081008/dump-a-numpy-array-into-a-csv-file
+pd.DataFrame(np_array).to_csv("path/to/file.csv")
 
-** How to save a NumPy array to a text file?
+** How to Convert an image to NumPy array and save it to CSV file using Python? https://www.geeksforgeeks.org/how-to-convert-an-image-to-numpy-array-and-saveit-to-csv-file-using-python/
+img = Image.open('geeksforgeeks.jpg')
+imageToMatrice = gfg.asarray(img)
+print(imageToMatrice.shape)
 
-** Load data from a text file
+** How to save a NumPy array to a text file? kite.com/python/answers/how-to-save-a-numpy-array-to-a-text-file-in-python
+original_array = np.loadtxt("test.txt").reshape(4, 2)
 
-** Plot line graph from NumPy array
+** Load data from a text file https://www.geeksforgeeks.org/import-text-files-into-numpy-arrays/
+File_data = np.loadtxt("example1.txt", dtype=int)
+print(File_data)
 
-** Create Histogram using NumPy
+** Plot line graph from NumPy array https://www.geeksforgeeks.org/plot-line-graph-from-numpy-array/
+x = np.arange(1, 11)
+y = x * x
+
+plt.title("Line graph")
+plt.xlabel("X axis")
+plt.ylabel("Y axis")
+plt.plot(x, y, color ="red")
+plt.show()
+
+** Create Histogram using NumPy https://numpy.org/doc/stable/reference/generated/numpy.histogram.html
+np.histogram([1, 2, 1], bins=[0, 1, 2, 3])
+a = np.arange(5)
+hist, bin_edges = np.histogram(a, density=True)
