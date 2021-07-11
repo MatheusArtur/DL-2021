@@ -18,7 +18,7 @@ import random
 * NumPy Array
 
 
-** [https://www.geeksforgeeks.org/how-to-create-an-empty-and-a-full-numpy-array/[How to create an empty and a full NumPy array?]]
+** [[https://www.geeksforgeeks.org/how-to-create-an-empty-and-a-full-numpy-array/][How to create an empty and a full NumPy array?]]
 empa = np.empty((3, 4), dtype=int)
 print("Empty Array")
 print(empa)
