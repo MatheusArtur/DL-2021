@@ -4,6 +4,7 @@ import h5py
 import scipy
 from PIL import Image
 from scipy import ndimage
+import skimage.transform
 from lr_utils import load_dataset
 
 train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
@@ -137,3 +138,69 @@ w = np.array([[0.1124579],[0.23106775]])
 b = -0.3
 X = np.array([[1.,-1.1,-3.2],[1.2,2.,0.1]])
 print ("predictions = " + str(predict(w, b, X)))
+
+# Merge all fuctions into a model
+def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate = 0.5, print_cost = False):
+
+  w, b = np.zeros((X_train.shape[0], 1)), 0
+  parameters, grads, costs = optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)
+
+  w = parameters["w"]
+  b = parameters["b"]
+
+  Y_prediction_test = predict(w, b, X_test)
+  Y_prediction_train = predict(w, b, X_train)
+
+  print("train accuracy: {} %".format(100 - np.mean(np.abs(Y_prediction_train - Y_train)) * 100))
+  print("test accuracy: {} %".format(100 - np.mean(np.abs(Y_prediction_test - Y_test)) * 100))
+
+  d = {"costs": costs,
+        "Y_prediction_test": Y_prediction_test, 
+        "Y_prediction_train" : Y_prediction_train, 
+        "w" : w, 
+        "b" : b,
+        "learning_rate" : learning_rate,
+        "num_iterations": num_iterations}
+
+  return d
+
+d = (model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = 2000, learning_rate = 0.005, print_cost = True))
+
+# Further analysis
+learning_rates = [0.01, 0.001, 0.0001]
+models = {}
+for i in learning_rates:
+  print ("learning rate is: " + str(i))
+  models[str(i)] = model(train_set_x, train_set_y, test_set_x, test_set_y, 
+                          num_iterations = 1500, learning_rate = i, print_cost = False)
+  print ('\n' + "-------------------------------------------------------" + '\n')
+
+for i in learning_rates:
+  plt.plot(np.squeeze(models[str(i)]["costs"]), 
+            label= str(models[str(i)]["learning_rate"]))
+
+plt.ylabel('cost')
+plt.xlabel('iterations (hundreds)')
+
+legend = plt.legend(loc='upper center', shadow=True)
+frame = legend.get_frame()
+frame.set_facecolor('0.90')
+plt.show()
+
+###### Test with your own image ######
+idx = 3 # Black Cat
+my_image = "my_image" + str(idx) + ".jpg" 
+
+fname = "images/" + my_image
+image = np.array(plt.imread(fname))
+image = image/255.
+
+my_image = skimage.transform.resize(image, (num_px, num_px)).reshape((1, num_px*num_px*3)).T
+
+my_predicted_image = predict(d["w"], d["b"], my_image)
+
+plt.imshow(image)
+print("y = " + str(np.squeeze(my_predicted_image)) + 
+      ", your algorithm predicts a \"" + 
+      classes[int(np.squeeze(my_predicted_image)),].decode("utf-8") +  
+      "\" picture.")
