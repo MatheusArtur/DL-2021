@@ -104,3 +104,52 @@ def forward_propagation(X, parameters):
 X_assess, parameters = forward_propagation_test_case()
 A2, cache = forward_propagation(X_assess, parameters)
 print(np.mean(cache['Z1']) ,np.mean(cache['A1']),np.mean(cache['Z2']),np.mean(cache['A2']))
+
+def compute_cost(A2, Y, parameters):
+  m = Y.shape[1]
+
+  # Compute the cross-entropy cost
+  logprobs = np.multiply(np.log(A2),Y) + np.multiply(np.log(1-A2),1-Y)
+  cost =- np.sum(logprobs) / m
+
+  cost = float(np.squeeze(cost)) 
+  assert(isinstance(cost, float))
+
+  return cost
+
+A2, Y_assess, parameters = compute_cost_test_case()
+print("cost = " + str(compute_cost(A2, Y_assess, parameters)))
+
+def backward_propagation(parameters, cache, X, Y):
+  m = X.shape[1]
+
+  # First, retrieve W1 and W2 from the dictionary "parameters".
+  W1 = parameters["W1"]
+  W2 = parameters["W2"]
+
+  # Retrieve also A1 and A2 from dictionary "cache".
+  A1 = cache["A1"]
+  A2 = cache["A2"]
+
+  # Backward propagation: calculate dW1, db1, dW2, db2. 
+  dZ2 = A2-Y
+  dW2 = np.dot(dZ2,A1.T) / m
+  db2 = np.sum(dZ2,axis=1,keepdims=True) / m
+
+  dZ1 = np.dot(W2.T,dZ2) * (1 - np.power(A1, 2))
+  dW1 = np.dot(dZ1,X.T) / m
+  db1 = np.sum(dZ1,axis=1,keepdims=True) / m
+
+  grads = {"dW1": dW1,
+            "db1": db1,
+            "dW2": dW2,
+            "db2": db2}
+
+  return grads
+
+parameters, cache, X_assess, Y_assess = backward_propagation_test_case()
+grads = backward_propagation(parameters, cache, X_assess, Y_assess)
+print ("dW1 = "+ str(grads["dW1"]))
+print ("db1 = "+ str(grads["db1"]))
+print ("dW2 = "+ str(grads["dW2"]))
+print ("db2 = "+ str(grads["db2"]))
