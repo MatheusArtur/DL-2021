@@ -194,19 +194,14 @@ def nn_model(X, Y, n_h, num_iterations = 10000, print_cost=False):
   np.random.seed(3)
   n_x = layer_sizes(X, Y)[0]
   n_y = layer_sizes(X, Y)[2]
-  
-  # Initialize parameters
+
   parameters = initialize_parameters(n_x, n_h, n_y)
 
   # Loop (gradient descent)
   for i in range(0, num_iterations):
-    # Forward propagation. Inputs: "X, parameters". Outputs: "A2, cache".
     A2, cache = forward_propagation(X, parameters)
-    # Cost function. Inputs: "A2, Y, parameters". Outputs: "cost".
     cost = compute_cost(A2, Y, parameters)
-    # Backpropagation. Inputs: "parameters, cache, X, Y". Outputs: "grads".
     grads = backward_propagation(parameters, cache, X, Y)
-    # Gradient descent parameter update. Inputs: "parameters, grads". Outputs: "parameters".
     parameters = update_parameters(parameters, grads, learning_rate = 1.2)
     
     # Print the cost every 1000 iterations
@@ -236,7 +231,6 @@ print("predictions mean = " + str(np.mean(predictions)))
 parameters = nn_model(X, Y, n_h = 4, num_iterations = 10000, print_cost=True)
 plot_decision_boundary(lambda x: predict(parameters, x.T), X, Y)
 plt.title("Decision Boundary for hidden layer size " + str(4))
-# Print accuracy
 predictions = predict(parameters, X)
 print ('Accuracy: %d' % float((np.dot(Y,predictions.T) + np.dot(1-Y,1-predictions.T))/float(Y.size)*100) + '%')
 
