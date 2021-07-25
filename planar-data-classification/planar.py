@@ -6,6 +6,8 @@ import sklearn.datasets
 import sklearn.linear_model
 from planar_utils import plot_decision_boundary, sigmoid, load_planar_dataset, load_extra_datasets
 
+np.random.seed(1)
+
 X, Y = load_planar_dataset()
 
 plt.scatter(X[0, :], X[1, :])
@@ -87,9 +89,9 @@ def forward_propagation(X, parameters):
   b2 = parameters["b2"]
 
   # Implement Forward Propagation to calculate A2 (probabilities)
-  Z1 = np.dot(W1,X)+b1
+  Z1 = np.dot(W1,X) + b1
   A1 = np.tanh(Z1)
-  Z2 = np.dot(W2,A1)+b2
+  Z2 = np.dot(W2,A1) + b2
   A2 = sigmoid(Z2)
 
   assert(A2.shape == (1, X.shape[1]))
@@ -153,3 +155,117 @@ print ("dW1 = "+ str(grads["dW1"]))
 print ("db1 = "+ str(grads["db1"]))
 print ("dW2 = "+ str(grads["dW2"]))
 print ("db2 = "+ str(grads["db2"]))
+
+
+def update_parameters(parameters, grads, learning_rate = 1.2):
+  # Retrieve each parameter from the dictionary "parameters"
+  W1 = parameters["W1"]
+  b1 = parameters["b1"]
+  W2 = parameters["W2"]
+  b2 = parameters["b2"]
+  # Retrieve each gradient from the dictionary "grads"
+  dW1 = grads["dW1"]
+  db1 = grads["db1"]
+  dW2 = grads["dW2"]
+  db2 = grads["db2"]
+
+  # Update rule for each parameter
+  W1 = W1-learning_rate*dW1
+  b1 = b1-learning_rate*db1
+  W2 = W2-learning_rate*dW2
+  b2 = b2-learning_rate*db2
+
+  parameters = {"W1": W1,
+                "b1": b1,
+                "W2": W2,
+                "b2": b2}
+
+  return parameters
+
+parameters, grads = update_parameters_test_case()
+parameters = update_parameters(parameters, grads)
+print("W1 = " + str(parameters["W1"]))
+print("b1 = " + str(parameters["b1"]))
+print("W2 = " + str(parameters["W2"]))
+print("b2 = " + str(parameters["b2"]))
+
+########### nn_model - has to use the previous functions in the right order. ###########
+def nn_model(X, Y, n_h, num_iterations = 10000, print_cost=False):
+  np.random.seed(3)
+  n_x = layer_sizes(X, Y)[0]
+  n_y = layer_sizes(X, Y)[2]
+  
+  # Initialize parameters
+  parameters = initialize_parameters(n_x, n_h, n_y)
+
+  # Loop (gradient descent)
+  for i in range(0, num_iterations):
+    # Forward propagation. Inputs: "X, parameters". Outputs: "A2, cache".
+    A2, cache = forward_propagation(X, parameters)
+    # Cost function. Inputs: "A2, Y, parameters". Outputs: "cost".
+    cost = compute_cost(A2, Y, parameters)
+    # Backpropagation. Inputs: "parameters, cache, X, Y". Outputs: "grads".
+    grads = backward_propagation(parameters, cache, X, Y)
+    # Gradient descent parameter update. Inputs: "parameters, grads". Outputs: "parameters".
+    parameters = update_parameters(parameters, grads, learning_rate = 1.2)
+    
+    # Print the cost every 1000 iterations
+    if print_cost and i % 1000 == 0:
+        print ("Cost after iteration %i: %f" %(i, cost))
+
+  return parameters
+
+X_assess, Y_assess = nn_model_test_case()
+parameters = nn_model(X_assess, Y_assess, 4, num_iterations=10000, print_cost=True)
+print("W1 = " + str(parameters["W1"]))
+print("b1 = " + str(parameters["b1"]))
+print("W2 = " + str(parameters["W2"]))
+print("b2 = " + str(parameters["b2"]))
+
+####### PREDICTIONS ##########
+def predict(parameters, X):
+  A2, cache = forward_propagation(X,parameters)
+  predictions = A2 > 0.5
+  return predictions
+
+parameters, X_assess = predict_test_case()
+predictions = predict(parameters, X_assess)
+print("predictions mean = " + str(np.mean(predictions)))
+
+# PLANAR DATASET - RUN MODEL
+parameters = nn_model(X, Y, n_h = 4, num_iterations = 10000, print_cost=True)
+plot_decision_boundary(lambda x: predict(parameters, x.T), X, Y)
+plt.title("Decision Boundary for hidden layer size " + str(4))
+# Print accuracy
+predictions = predict(parameters, X)
+print ('Accuracy: %d' % float((np.dot(Y,predictions.T) + np.dot(1-Y,1-predictions.T))/float(Y.size)*100) + '%')
+
+########### Tuning hidden layer size ###########
+plt.figure(figsize=(16, 32))
+hidden_layer_sizes = [1, 2, 3, 4, 5, 20, 50]
+for i, n_h in enumerate(hidden_layer_sizes):
+    plt.subplot(5, 2, i + 1)
+    plt.title('Hidden Layer of size %d' % n_h)
+    parameters = nn_model(X, Y, n_h, num_iterations=5000)
+    plot_decision_boundary(lambda x: predict(parameters, x.T), X, Y)
+    predictions = predict(parameters, X)
+    accuracy = float((np.dot(Y, predictions.T) + np.dot(1 - Y, 1 - predictions.T)) / float(Y.size) * 100)
+    print ("Accuracy for {} hidden units: {} %".format(n_h, accuracy))
+
+########### Peformance on other Datasets ###########
+noisy_circles, noisy_moons, blobs, gaussian_quantiles, no_structure = load_extra_datasets()
+
+datasets = {"noisy_circles": noisy_circles,
+            "noisy_moons": noisy_moons,
+            "blobs": blobs,
+            "gaussian_quantiles": gaussian_quantiles}
+
+dataset = "noisy_moons"
+
+X, Y = datasets[dataset]
+X, Y = X.T, Y.reshape(1, Y.shape[0])
+
+if dataset == "blobs":
+    Y = Y % 2
+
+plt.scatter(X[0, :], X[1, :], c=Y, s=40, cmap=plt.cm.Spectral)
