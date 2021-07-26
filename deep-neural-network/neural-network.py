@@ -1,7 +1,7 @@
 import numpy as np
 import h5py
 import matplotlib.pyplot as plt
-from testCases_v4a import *
+from testCases_v4 import *
 from dnn_utils_v2 import sigmoid, sigmoid_backward, relu, relu_backward
 
 plt.rcParams['figure.figsize'] = (5.0, 4.0)
@@ -138,3 +138,84 @@ for l in range(len(caches)):
     print("\nW^[", l+1,"] = \n", caches[l][0][1])
     print("\nb^[", l+1,"] = \n", caches[l][0][2])
     print("\nZ^[", l+1,"] = \n", caches[l][1][0])
+
+# Cost Function
+def compute_cost(AL, Y):
+  m = Y.shape[1]
+
+  cost = (-1 / m) * np.sum(np.multiply(Y, np.log(AL)) + np.multiply(1 - Y, np.log(1 - AL)))
+  cost = np.squeeze(cost)
+  assert(cost.shape == ())
+
+  return cost
+
+Y, AL = compute_cost_test_case()
+print("cost = " + str(compute_cost(AL, Y)))
+
+# Linear Backward
+def linear_backward(dZ, cache):
+  A_prev, W, b = cache
+  m = A_prev.shape[1]
+
+  ### START CODE HERE ### (≈ 3 lines of code)
+  dW = (1. / m) * (np.dot(dZ, A_prev.T))
+  db = (1. / m) * (np.sum(dZ, axis = 1, keepdims=True))
+  dA_prev = np.dot(W.T, dZ)
+  ### END CODE HERE ###
+  
+  assert(dA_prev.shape == A_prev.shape)
+  assert(dW.shape == W.shape)
+  assert(db.shape == b.shape)
+  
+  return dA_prev, dW, db
+
+
+dZ, linear_cache = linear_backward_test_case()
+
+print("linear_cache size = ", len(linear_cache) , '\n\n')
+
+print('A^[0] = \n', linear_cache[0] , '\n\n')
+print('W^[1] = \n', linear_cache[1] , '\n\n')
+print('b^[1] = \n', linear_cache[2] , '\n\n')
+
+dA_prev, dW, db = linear_backward(dZ, linear_cache)
+# ??????????????????????
+print ("dA_prev = "+ str(dA_prev))
+# ??????????????????????
+print ("dW = " + str(dW))
+# ??????????????????????
+print ("db = " + str(db))
+
+
+# Linear activation backward
+def linear_activation_backward(dA, cache, activation):
+  linear_cache, activation_cache = cache
+  
+  if activation == "relu":
+    dZ = relu_backward(dA, activation_cache)
+    dA_prev, dW, db = linear_backward(dZ, linear_cache)
+      
+  elif activation == "sigmoid":
+    dZ = sigmoid_backward(dA, activation_cache)
+    dA_prev, dW, db = linear_backward(dZ, linear_cache)
+  
+  return dA_prev, dW, db
+
+dAL, linear_activation_cache = linear_activation_backward_test_case()
+print("A^[l-1]\n", linear_activation_cache[0][0], "\n")
+print("W^[l]\n", linear_activation_cache[0][1], "\n")
+print("b^[l]\n", linear_activation_cache[0][2], "\n")
+print("Z^[l]=\n", linear_activation_cache[1][0], "\n")
+print ("\n\n")
+
+dA_prev, dW, db = linear_activation_backward(dAL, linear_activation_cache, activation = "sigmoid")
+print ("sigmoid:")
+print ("dA_prev = "+ str(dA_prev))
+print ("dW = " + str(dW))
+print ("db = " + str(db) + "\n")
+
+dA_prev, dW, db = linear_activation_backward(dAL, linear_activation_cache, activation = "relu")
+print ("relu:")
+print ("dA_prev = "+ str(dA_prev))
+print ("dW = " + str(dW))
+print ("db = " + str(db))
